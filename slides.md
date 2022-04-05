@@ -11,6 +11,8 @@ highlighter: shiki
 # show line numbers in code blocks
 lineNumbers: false
 # some information about the slides, markdown enabled
+persist: true
+download: true
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -344,6 +346,8 @@ const final = {
 </div>
 
 ---
+
+### 4.部署(Netlify、Vercel)
 
 # Learn More
 
