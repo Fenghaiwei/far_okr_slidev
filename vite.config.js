@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: "/github-actions-slidev/",
+  publicPath: "/far_okr_slidev/",
 };
