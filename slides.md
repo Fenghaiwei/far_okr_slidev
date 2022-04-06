@@ -277,13 +277,39 @@ This shows on the right
 
 ---
 
-### 3. [动画](https://motion.vueuse.org/).
+### 3. 导出
+
+ <div >
+
+导出为 PDF 或 PNG 的功能基于 Playwright 实现渲染。因此，使用此功能前需要安装 playwright-chromium
+
+```ts
+npm i -D playwright-chromium
+```
+
+导出 PDF
+
+```ts
+slidev export
+```
+
+导出 PNG
+
+```ts
+slidev export --format png
+```
+
+ </div>
+
+---
+
+### 4. [动画](https://motion.vueuse.org/).
 
 ```html
 <div v-motion :initial="{ x: -80 }" :enter="{ x: 0 }">Slidev</div>
 ```
 
-<div class="w-60 relative mt-6" v-if="$slidev.nav.currentPage === 12">
+<div class="w-60 relative mt-6" v-if="$slidev.nav.currentPage === 13">
   <div class="relative w-40 h-40">
     <img
       v-motion
@@ -307,7 +333,6 @@ This shows on the right
       src="https://sli.dev/logo-triangle.png"
     />
   </div>
-
   <div
     class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
     v-motion
@@ -316,7 +341,6 @@ This shows on the right
     Slidev
   </div>
 </div>
-
 <p class='text-sm'>Slidev 会预加载下一张幻灯片以提高性能，导致动画无法被看见，可以禁用幻灯片预加载或使用v-if来控制</p>
 
 ```html
@@ -350,8 +374,109 @@ const final = {
 
 ### 4.部署(Netlify、Vercel、GitHub Pages)
 
-4.1 [Netlify](https://www.netlify.com/)
+<v-clicks>
+
+<div class="text-xs">
+
+4.1 [Netlify 部署](https://www.netlify.com/)
+
+<img class="width-600" src='https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/074efdea522d4f47b3241cf362b066f5~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?'>
+
+4.2 [Vercel 部署](https://vercel.com/)
+
+</div>
+
+</v-clicks>
+
+<style>
+
+.width-600{
+  width:600px
+}
+
+</style>
 
 ---
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+4.3 通过 Github Action 部署到 GitHub Pages
+
+        a. 创建 .github/workflows/deploy.yml 文件
+
+<div class="text-xs italic ml-10 mt-2">Github 只要发现该目录中由 yml 文件就会自动运行该文件。</div>
+
+```ts
+name: Deploy pages
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} //下一页中配置
+
+```
+
+---
+
+b. 获取密钥并存储到 Github 仓库中
+
+<div class="width-600">
+  <img   src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c144be95490a4fd899fe0bd0aa1bbdcf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+
+  <div grid="~ cols-2 gap-15" m="t-2">
+    <img v-click style="width:200px" src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0df8ca45b4174564b76a0fb13a36e2fa~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+    <div class="width-600">
+    <img v-click   m="t-5" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b806be8158a48439aa9c7b8419a3486~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+    <div v-click class="text-xs italic ml-10 mt-2">获取到token。</div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+.width-600{
+  width:600px
+}
+
+</style>
+
+---
+
+c. 给项目设置 token
+<img style="width:600px" src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d5012d63d1a41c3a074dc96fc35b1cf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+
+---
+
+d.代码提交到 GitHub 后，进入.github/workflows/deploy.yml 点击 View runs 查看部署情况
+
+<img style="width:400px" src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bf0cd077276149f9bc9274354ba35fc7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+
+<div grid="~ cols-2 gap-15" m="t-2">
+  <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7b6e84ed29334ca9ae4e2e9161f1a1e1~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+  <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1dfba894cc04af1ad472925591be89f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
+</div>
+---
+
+### 5. 还未解决遇到的问题
+
+      1 官方主题使用
+
+      2 静态资源引用
+
+      3 各幻灯片的背景、布局的设置
+
+      4 分割slides.md
+
+      5 演讲者模式的意义
