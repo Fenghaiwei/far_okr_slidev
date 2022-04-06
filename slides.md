@@ -1,23 +1,18 @@
 ---
-# try also 'default' to start simple
 theme: Default
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
 background: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04bd81f391524537bff81948979ac5df~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?
-# apply any windi css classes to the current slide
 class: "text-center"
-# https://sli.dev/custom/highlighters.html
 highlighter: shiki
-# show line numbers in code blocks
 lineNumbers: false
-# some information about the slides, markdown enabled
-persist: true
 download: true
+# 预加载
+preload: false
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## Slidev 的描述
+  学习slidev
 
-  Learn more at [Sli.dev](https://sli.dev)
+  学习slidev
+
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -288,7 +283,7 @@ This shows on the right
 <div v-motion :initial="{ x: -80 }" :enter="{ x: 0 }">Slidev</div>
 ```
 
-<div class="w-60 relative mt-6">
+<div class="w-60 relative mt-6" v-if="$slidev.nav.currentPage === 12">
   <div class="relative w-40 h-40">
     <img
       v-motion
@@ -322,7 +317,20 @@ This shows on the right
   </div>
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
+<p class='text-sm'>Slidev 会预加载下一张幻灯片以提高性能，导致动画无法被看见，可以禁用幻灯片预加载或使用v-if来控制</p>
+
+```html
+--- preload: false ---
+<div
+  v-if="$slidev.nav.currentPage === 12"
+  v-motion
+  :initial="{ x: -80 }"
+  :enter="{ x: 0 }"
+>
+  Slidev
+</div>
+```
+
 <script setup lang="ts">
 const final = {
   x: 0,
@@ -338,17 +346,12 @@ const final = {
 }
 </script>
 
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-</div>
-
 ---
 
-### 4.部署(Netlify、Vercel)
+### 4.部署(Netlify、Vercel、GitHub Pages)
 
-# Learn More
+4.1 [Netlify](https://www.netlify.com/)
+
+---
 
 [Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
