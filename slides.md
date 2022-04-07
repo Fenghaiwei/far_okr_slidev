@@ -7,6 +7,7 @@ lineNumbers: false
 download: true
 # 预加载
 preload: false
+monaco: true
 info: |
   ## Slidev 的描述
   学习slidev
