@@ -238,9 +238,12 @@ This shows on the right
 
 1.4. 静态资源
 
+src: ./test.md
+
 <!-- 不支持引用本地图片资源 -->
 
 <!-- <img src="./public/ball.jpg"> -->
+
 <img style='height:150px' src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7e09e6c10d72493db0396b48292dd0fc~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?">
 
 ---
